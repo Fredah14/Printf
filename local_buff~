@@ -1,0 +1,31 @@
+#include "main.h"
+#include <iostream>
+#include <fstream>
+
+/**
+*main - call buffer size
+*
+*Return: file in chunks of up to 1024 chars
+*/
+
+const int BUFFER_SIZE = 1024
+
+int main() {
+    std::ofstream outfile("output.txt");
+    char buffer[BUFFER_SIZE];
+
+
+    for (int i = 0; i < 1000000; i++) {
+        // Generate some data to write
+        std::string data = "Data to write\n";
+
+        memcpy(buffer, data.c_str(), data.size());
+
+
+        outfile.write(buffer, data.size());
+    }
+
+    outfile.close();
+
+    return 0;
+}
