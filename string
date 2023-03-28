@@ -1,0 +1,19 @@
+#include <stdio.h>
+
+void print_string(const char* str) {
+    while (*str) {
+        if ((*str >= 0 && *str <= 31) || *str >= 127) {
+            printf("\\x%02X", (unsigned int)*str);
+        } else {
+            printf("%c", *str);
+        }
+        str++;
+    }
+}
+
+int main() {
+    char* str = "Hello,\tWorld!\n";
+    printf("Original string: %s\n", str);
+    printf("Modified string: %S\n", str);
+    return 0;
+}
