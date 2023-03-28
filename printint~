@@ -1,0 +1,31 @@
+#include <stdio.h>
+#include <stdlib.h>
+#include <stdarg.h>
+
+void print_binary(const char* format, ...) {
+    va_list args;
+    va_start(args, format);
+
+    for (const char* p = format; *p != '\0'; p++) {
+        if (*p != '%') {
+            putchar(*p);
+            continue;
+        }
+        p++;
+
+        if (*p == 'b') {
+            unsigned int value = va_arg(args, unsigned int);
+            char binary_string[33];
+            itoa(value, binary_string, 2);
+            printf("%s", binary_string);
+        }
+    }
+
+    va_end(args);
+}
+
+int main() {
+    unsigned int value = 42;
+    print_binary("The binary representation of %u is %b.\n", value, value);
+    return 0;
+}
